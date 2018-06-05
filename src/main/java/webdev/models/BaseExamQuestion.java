@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-public class Widget {
+public class BaseExamQuestion {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,15 +19,25 @@ public class Widget {
 
     @Getter
     @Setter
-    String name;
+    private String description;
 
     @Getter
     @Setter
-    String widgetType;
+    private int points;
+
+    @Getter
+    @Setter
+    private String title;
+
+    @Getter
+    @Setter
+    private String instructions;
 
     @ManyToOne
     @JsonIgnore
-    @Getter@Setter
-    private Topic topic;
+    @Getter
+    @Setter
+    private Exam exam;
+
 
 }
