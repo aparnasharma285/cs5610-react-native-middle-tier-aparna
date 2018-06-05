@@ -14,7 +14,7 @@ public class Assignment extends Widget {
 
     @Getter
     @Setter
-    int points;
+    int points = 0;
 
     @Getter
     @Setter
