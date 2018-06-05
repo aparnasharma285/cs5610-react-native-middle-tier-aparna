@@ -24,6 +24,14 @@ public class Widget {
     @Setter
     String widgetType;
 
+    @Getter
+    @Setter
+    String description;
+
+    @Getter
+    @Setter
+    int points = 0;
+
     @ManyToOne
     @JsonIgnore
     @Getter@Setter

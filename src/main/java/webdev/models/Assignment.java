@@ -10,14 +10,6 @@ public class Assignment extends Widget {
 
     @Getter
     @Setter
-    String description;
-
-    @Getter
-    @Setter
-    int points = 0;
-
-    @Getter
-    @Setter
     String title;
 
     @Getter
