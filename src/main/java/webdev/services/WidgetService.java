@@ -73,120 +73,12 @@ public class WidgetService {
                 widgetRepository.delete(w);
             }
 
-            int orderCount = 1;
             for (Widget widget : widgets) {
                 widget.setTopic(topic);
-                widget.setOrder(orderCount);
-                orderCount++;
                 newWidgetList.add(widgetRepository.save(widget));
             }
         }
         return newWidgetList;
-    }
-
-    @PutMapping("/api/widget/{widgetId}")
-    public Widget updateWidget(@PathVariable("widgetId") int widgetId, @RequestBody Widget newWidget) {
-
-        Widget widget = widgetRepository.findById(widgetId).orElse(null);
-
-        if (widget != null) {
-
-            String name = newWidget.getName();
-            String text = newWidget.getText();
-            String className = newWidget.getClassName();
-            int order = newWidget.getOrder();
-            String style = newWidget.getStyle();
-            String width = newWidget.getWidth();
-            String height = newWidget.getHeight();
-            String type = newWidget.getWidgetType();
-            int size = newWidget.getSize();
-            String href = newWidget.getHref();
-            String src = newWidget.getSrc();
-            String listItems = newWidget.getListItems();
-            ListType listType = newWidget.getListType();
-
-            if (name != null) {
-                widget.setName(name);
-            }
-            if (text != null) {
-                widget.setText(text);
-            }
-            if (className != null) {
-                widget.setClassName(className);
-            }
-            if (order > 0) {
-                widget.setOrder(order);
-            }
-            if (style != null) {
-                widget.setStyle(style);
-            }
-            if (width != null) {
-                widget.setWidth(width);
-            }
-            if (height != null) {
-                widget.setHeight(height);
-            }
-            if (type != null) {
-
-                if (type.equals("Heading")) {
-
-                    if (size > 0) {
-                        widget.setSize(size);
-                    }
-                    widget.setHref(null);
-                    widget.setSrc(null);
-                    widget.setListItems(null);
-                    widget.setListType(null);
-                }
-
-                if (type.equals("Link")) {
-                    if (href != null) {
-                        widget.setHref(href);
-                    }
-                    widget.setSize(0);
-                    widget.setSrc(null);
-                    widget.setListItems(null);
-                    widget.setListType(null);
-                }
-
-                if (type.equals("Image")) {
-                    if (src != null) {
-                        widget.setSrc(src);
-
-                    }
-                    widget.setSize(0);
-                    widget.setHref(null);
-                    widget.setListItems(null);
-                    widget.setListType(null);
-                }
-
-                if (type.equals("Paragraph")) {
-                    widget.setSize(0);
-                    widget.setHref(null);
-                    widget.setSrc(null);
-                    widget.setListItems(null);
-                    widget.setListType(null);
-                }
-
-                if (type.equals("List")) {
-                    if (listItems != null) {
-                        widget.setListItems(listItems);
-                    }
-                    if (listType != null) {
-                        widget.setListType(listType);
-                    }
-                    widget.setSize(0);
-                    widget.setHref(null);
-                    widget.setSrc(null);
-                }
-            }
-
-
-            return widgetRepository.save(widget);
-        }
-
-        return null;
-
     }
 
     @DeleteMapping("/api/widget/{widgetId}")

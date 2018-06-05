@@ -9,11 +9,7 @@ import java.util.List;
 
 @Entity
 public class Exam extends Widget{
-
-    @Getter
-    @Setter
-    String typeOfQuestion;
-
+    
     @OneToMany(mappedBy = "exam")
     @JsonIgnore
     @Getter

@@ -33,6 +33,11 @@ public class BaseExamQuestion {
     @Setter
     private String instructions;
 
+
+    @Getter
+    @Setter
+    String typeOfQuestion;
+
     @ManyToOne
     @JsonIgnore
     @Getter
