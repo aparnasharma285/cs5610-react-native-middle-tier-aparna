@@ -43,7 +43,7 @@ public class WidgetService {
 
         if (topic != null) {
 
-            return widgetRepository.findSortedWidgetsForTopic(topic);
+            return topic.getWidgets();
         }
 
         return null;
