@@ -71,4 +71,36 @@ public class AssignmentService {
         }
     }
 
+
+    @PutMapping("/api/assignment/{aid}")
+    public Assignment updateAssignment(@RequestBody Assignment updatedAssignment, @PathVariable("aid") int aid){
+
+        Assignment existing = assignmentRepository.findById(aid).orElse(null);
+
+        if(existing !=null){
+
+            int points = updatedAssignment.getPoints();
+            String description = updatedAssignment.getDescription();
+            String name = updatedAssignment.getName();
+            String title = updatedAssignment.getTitle();
+
+            if(points > 0){
+                existing.setPoints(points);
+            }
+            if(description != null){
+                existing.setDescription(description);
+            }
+            if(name!= null){
+                existing.setName(name);
+            }
+            if(title != null){
+                existing.setTitle(title);
+            }
+
+            return assignmentRepository.save(existing);
+        }
+
+        return null;
+    }
+
 }
