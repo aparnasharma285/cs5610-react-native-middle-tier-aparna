@@ -57,6 +57,7 @@ public class AssignmentService {
 
         if ((existing == null) && (topic != null)) {
 
+            newAssignment.setWidgetType("Assignment");
             newAssignment.setTopic(topic);
             return assignmentRepository.save(newAssignment);
         }
