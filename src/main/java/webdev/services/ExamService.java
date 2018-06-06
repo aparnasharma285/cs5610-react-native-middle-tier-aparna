@@ -60,8 +60,9 @@ public class ExamService {
 
         if ((existing == null) && (topic != null)) {
 
-            newExam.setWidgetType("Exam");
+
             newExam.setTopic(topic);
+            newExam.setWidgetType("Exam");
             return examRepository.save(newExam);
         }
 
