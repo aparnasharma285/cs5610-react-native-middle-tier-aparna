@@ -30,7 +30,7 @@ public class MultipleChoiceExamQuestionService {
         Exam exam = examRepository.findById(eid).orElse(null);
         if(exam != null){
 
-            return multipleChoiceExamQuestionRepository.findMCQForExam(exam);
+            return multipleChoiceExamQuestionRepository.findMCQForExam(exam,"MultipleChoice");
         }
 
         return null;

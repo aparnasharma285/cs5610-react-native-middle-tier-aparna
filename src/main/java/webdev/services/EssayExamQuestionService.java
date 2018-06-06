@@ -32,7 +32,7 @@ public class EssayExamQuestionService {
         Exam exam = examRepository.findById(eid).orElse(null);
         if (exam != null) {
 
-            return essayExamQuestionRepository.findEssayForExam(exam);
+            return essayExamQuestionRepository.findEssayForExam(exam,"Essay");
         }
 
         return null;

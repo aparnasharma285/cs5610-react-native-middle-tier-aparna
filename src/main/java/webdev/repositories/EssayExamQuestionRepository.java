@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface EssayExamQuestionRepository extends JpaRepository <EssayExamQuestion,Integer> {
 
-    @Query("select f from EssayExamQuestion f where f.exam=:exam")
-    public List<EssayExamQuestion> findEssayForExam(@Param("exam") Exam exam);
+    @Query("select f from BaseExamQuestion f where f.exam=:exam and f.typeOfQuestion=:qtype")
+    public List<EssayExamQuestion> findEssayForExam(@Param("exam") Exam exam,
+                                                               @Param("qtype") String qtype);
 }

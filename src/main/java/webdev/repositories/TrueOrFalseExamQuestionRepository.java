@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface TrueOrFalseExamQuestionRepository extends JpaRepository<TrueOrFalseExamQuestion,Integer> {
 
-    @Query("select f from TrueOrFalseExamQuestion f where f.exam=:exam")
-    public List<TrueOrFalseExamQuestion> findTrueFalseForExam(@Param("exam") Exam exam);
+    @Query("select f from BaseExamQuestion f where f.exam=:exam and f.typeOfQuestion=:qtype")
+    public List<TrueOrFalseExamQuestion> findTrueFalseForExam(@Param("exam") Exam exam,
+                                                    @Param("qtype") String qtype);
 }

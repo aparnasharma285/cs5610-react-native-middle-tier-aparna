@@ -31,7 +31,7 @@ public class TrueOrFalseExamQuestionService {
         Exam exam = examRepository.findById(eid).orElse(null);
         if (exam != null) {
 
-            return trueOrFalseExamQuestionRepository.findTrueFalseForExam(exam);
+            return trueOrFalseExamQuestionRepository.findTrueFalseForExam(exam,"TrueOrFalse");
         }
 
         return null;

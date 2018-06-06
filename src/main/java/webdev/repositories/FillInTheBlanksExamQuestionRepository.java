@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface FillInTheBlanksExamQuestionRepository extends JpaRepository<FillInTheBlanksExamQuestion,Integer> {
 
-    @Query("select f from FillInTheBlanksExamQuestion f where f.exam=:exam")
-    public List<FillInTheBlanksExamQuestion> findBlanksForExam(@Param("exam") Exam exam);
+    @Query("select f from BaseExamQuestion f where f.exam=:exam and f.typeOfQuestion=:qtype")
+    public List<FillInTheBlanksExamQuestion> findBlanksForExam(@Param("exam") Exam exam,
+                                                               @Param("qtype") String qtype);
 }

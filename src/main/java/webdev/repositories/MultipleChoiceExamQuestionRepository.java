@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface MultipleChoiceExamQuestionRepository extends JpaRepository<MultipleChoiceExamQuestion, Integer> {
 
-
-    @Query("select m from MultipleChoiceExamQuestion m where m.exam=:exam")
-    public List<MultipleChoiceExamQuestion> findMCQForExam(@Param("exam") Exam exam);
+    @Query("select f from BaseExamQuestion f where f.exam=:exam and f.typeOfQuestion=:qtype")
+    public List<MultipleChoiceExamQuestion> findMCQForExam(@Param("exam") Exam exam,
+                                                    @Param("qtype") String qtype);
 }
