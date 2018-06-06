@@ -23,7 +23,7 @@ public class Lesson {
     @Getter@Setter
     private Module module;
 
-    @OneToMany(mappedBy="lesson")
+    @OneToMany(mappedBy="lesson",cascade = CascadeType.ALL, orphanRemoval = true)
     @Getter@Setter
     private List<Topic> topics;
 

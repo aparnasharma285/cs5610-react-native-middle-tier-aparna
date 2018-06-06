@@ -33,7 +33,7 @@ public class Course {
     @JsonFormat(pattern="MMMM"+" "+"dd"+", "+"yyyy", timezone = "GMT")
     private Date modified;
 
-    @OneToMany(mappedBy="course")
+    @OneToMany(mappedBy="course", cascade = CascadeType.ALL, orphanRemoval = true)
     @Getter@Setter
     private List<Module> modules;
 

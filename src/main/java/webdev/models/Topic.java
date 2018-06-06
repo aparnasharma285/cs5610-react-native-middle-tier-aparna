@@ -24,7 +24,7 @@ public class Topic {
     @Getter@Setter
     private Lesson lesson;
 
-    @OneToMany(mappedBy="topic")
+    @OneToMany(mappedBy="topic",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     @Getter@Setter
     private List<Widget> widgets;

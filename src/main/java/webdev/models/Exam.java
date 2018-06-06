@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class Exam extends Widget{
     
-    @OneToMany(mappedBy = "exam")
+    @OneToMany(mappedBy = "exam",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     @Getter
     @Setter
