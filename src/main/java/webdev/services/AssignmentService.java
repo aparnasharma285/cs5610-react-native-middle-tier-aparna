@@ -48,7 +48,7 @@ public class AssignmentService {
     }
 
 
-    @PostMapping("/api/lesson/{tid}/assignment")
+    @PostMapping("/api/topic/{tid}/assignment")
     public Assignment createAssignment(@RequestBody Assignment newAssignment, @PathVariable("tid") int tid) {
 
         int assignmentId = newAssignment.getId();

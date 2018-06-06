@@ -16,6 +16,12 @@ public class Widget {
     @Setter
     private int id;
 
+
+    @Getter
+    @Setter
+    int points = 0;
+
+    @ManyToOne
     @Getter
     @Setter
     String name;
@@ -27,12 +33,6 @@ public class Widget {
     @Getter
     @Setter
     String description;
-
-    @Getter
-    @Setter
-    int points = 0;
-
-    @ManyToOne
     @JsonIgnore
     @Getter@Setter
     private Topic topic;
