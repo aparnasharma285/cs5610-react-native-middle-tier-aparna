@@ -59,7 +59,7 @@ public class ExamService {
         if (topic != null) {
             newExam.setTopic(topic);
             newExam.setWidgetType("Exam");
-            newExam.setId(Integer.MAX_VALUE);
+            newExam .setId(Integer.MAX_VALUE);
             return examRepository.save(newExam);
         }
 

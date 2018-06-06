@@ -49,6 +49,7 @@ public class BaseExamQuestionService {
 
         if(exam != null){
             baseExamQuestion.setExam(exam);
+            baseExamQuestion.setId(Integer.MAX_VALUE);
             return baseExamQuestionRepository.save(baseExamQuestion);
         }
 
