@@ -54,19 +54,16 @@ public class ExamService {
     @PostMapping("/api/topic/{tid}/exam")
     public Exam createExam(@RequestBody Exam newExam, @PathVariable("tid") int tid){
 
-        int examId = newExam.getId();
-        Exam existing = examRepository.findById(examId).orElse(null);
         Topic topic = topicRepository.findById(tid).orElse(null);
 
-        if ((existing == null) && (topic != null)) {
-
-
+        if (topic != null) {
             newExam.setTopic(topic);
             newExam.setWidgetType("Exam");
+            newExam.setId(Integer.MAX_VALUE);
             return examRepository.save(newExam);
         }
 
-        return existing;
+        return null;
     }
 
 

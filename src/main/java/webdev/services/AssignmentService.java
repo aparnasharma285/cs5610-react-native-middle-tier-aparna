@@ -50,19 +50,14 @@ public class AssignmentService {
 
     @PostMapping("/api/topic/{tid}/assignment")
     public Assignment createAssignment(@RequestBody Assignment newAssignment, @PathVariable("tid") int tid) {
-
-        int assignmentId = newAssignment.getId();
-        Assignment existing = assignmentRepository.findById(assignmentId).orElse(null);
         Topic topic = topicRepository.findById(tid).orElse(null);
-
-        if ((existing == null) && (topic != null)) {
-
+        if (topic != null) {
             newAssignment.setWidgetType("Assignment");
             newAssignment.setTopic(topic);
+            newAssignment.setId(Integer.MAX_VALUE);
             return assignmentRepository.save(newAssignment);
         }
-
-        return existing;
+        return null;
     }
 
 
