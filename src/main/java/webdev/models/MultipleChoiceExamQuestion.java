@@ -15,6 +15,6 @@ public class MultipleChoiceExamQuestion extends BaseExamQuestion {
 
     @Getter
     @Setter
-    private int correctOption;
+    private int correctOption = 0;
 
 }

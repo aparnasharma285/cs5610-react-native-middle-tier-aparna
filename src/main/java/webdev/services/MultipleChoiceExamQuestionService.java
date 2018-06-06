@@ -23,6 +23,12 @@ public class MultipleChoiceExamQuestionService {
         this.examRepository = examRepository;
     }
 
+    @GetMapping("/api/choice/{eid}")
+    public MultipleChoiceExamQuestion findMultipleChoiceQuestionById(@PathVariable("eid") int eid) {
+
+        return multipleChoiceExamQuestionRepository.findById(eid).orElse(null);
+    }
+
 
     @GetMapping("/api/exam/{eid}/choice")
     public List<MultipleChoiceExamQuestion> findMCQForExam(@PathVariable("eid") int eid){
@@ -53,6 +59,47 @@ public class MultipleChoiceExamQuestionService {
         return null;
     }
 
+
+    @PutMapping("/api/choice/{eid}")
+    public MultipleChoiceExamQuestion updateChoicesExamQuestion(@RequestBody MultipleChoiceExamQuestion updatedQuestion, @PathVariable("eid") int eid) {
+
+        MultipleChoiceExamQuestion existing = multipleChoiceExamQuestionRepository.findById(eid).orElse(null);
+
+        if (existing != null) {
+
+            int points = updatedQuestion.getPoints();
+            String description = updatedQuestion.getDescription();
+            String instructions = updatedQuestion.getInstructions();
+            String title = updatedQuestion.getTitle();
+            String options = updatedQuestion.getOptions();
+            int correctOption = updatedQuestion.getCorrectOption();
+
+            if (points > 0) {
+                existing.setPoints(points);
+            }
+            if (description != null) {
+                existing.setDescription(description);
+            }
+            if (instructions != null) {
+                existing.setInstructions(instructions);
+            }
+            if (title != null) {
+                existing.setTitle(title);
+            }
+
+            if (options != null) {
+                existing.setOptions(options);
+            }
+
+            if (correctOption != 0) {
+                existing.setCorrectOption(correctOption);
+            }
+
+            return multipleChoiceExamQuestionRepository.save(existing);
+        }
+
+        return null;
+    }
 
     @DeleteMapping("/api/exam/choice/{cid}")
     public void deleteMCQ (@PathVariable("cid") int cid){

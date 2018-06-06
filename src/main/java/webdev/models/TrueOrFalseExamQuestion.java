@@ -10,5 +10,5 @@ public class TrueOrFalseExamQuestion extends BaseExamQuestion {
 
     @Getter
     @Setter
-    private Boolean isTrue;
+    private Boolean isTrue = false;
 }

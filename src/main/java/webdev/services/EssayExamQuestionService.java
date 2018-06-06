@@ -20,7 +20,7 @@ public class EssayExamQuestionService {
 
     @Autowired
     public EssayExamQuestionService(EssayExamQuestionRepository essayExamQuestionRepository,
-                                              ExamRepository examRepository) {
+                                    ExamRepository examRepository) {
         this.essayExamQuestionRepository = essayExamQuestionRepository;
         this.examRepository = examRepository;
     }
@@ -32,16 +32,22 @@ public class EssayExamQuestionService {
         Exam exam = examRepository.findById(eid).orElse(null);
         if (exam != null) {
 
-            return essayExamQuestionRepository.findEssayForExam(exam,"Essay");
+            return essayExamQuestionRepository.findEssayForExam(exam, "Essay");
         }
 
         return null;
     }
 
+    @GetMapping("/api/essay/{eid}")
+    public EssayExamQuestion findEssayExamQuestionById(@PathVariable("eid") int eid) {
+
+        return essayExamQuestionRepository.findById(eid).orElse(null);
+    }
+
 
     @PostMapping("/api/exam/{eid}/essay")
     public EssayExamQuestion createEssayForExam(@RequestBody EssayExamQuestion newQuestion,
-                                                           @PathVariable("eid") int eid) {
+                                                @PathVariable("eid") int eid) {
 
         Exam exam = examRepository.findById(eid).orElse(null);
 
@@ -50,6 +56,38 @@ public class EssayExamQuestionService {
             newQuestion.setExam(exam);
             newQuestion.setTypeOfQuestion("Essay");
             return essayExamQuestionRepository.save(newQuestion);
+        }
+
+        return null;
+    }
+
+
+    @PutMapping("/api/essay/{eid}")
+    public EssayExamQuestion updateEssayexamQuestion(@RequestBody EssayExamQuestion updatedQuestion, @PathVariable("eid") int eid) {
+
+        EssayExamQuestion existing = essayExamQuestionRepository.findById(eid).orElse(null);
+
+        if (existing != null) {
+
+            int points = updatedQuestion.getPoints();
+            String description = updatedQuestion.getDescription();
+            String instructions = updatedQuestion.getInstructions();
+            String title = updatedQuestion.getTitle();
+
+            if (points > 0) {
+                existing.setPoints(points);
+            }
+            if (description != null) {
+                existing.setDescription(description);
+            }
+            if (instructions != null) {
+                existing.setInstructions(instructions);
+            }
+            if (title != null) {
+                existing.setTitle(title);
+            }
+
+            return essayExamQuestionRepository.save(existing);
         }
 
         return null;

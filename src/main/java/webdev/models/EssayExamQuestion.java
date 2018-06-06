@@ -10,5 +10,5 @@ public class EssayExamQuestion extends BaseExamQuestion {
 
     @Getter
     @Setter
-    private String answer;
+        private String answer;
 }

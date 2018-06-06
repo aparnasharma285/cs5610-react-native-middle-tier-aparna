@@ -8,7 +8,6 @@ import webdev.repositories.ExamRepository;
 import webdev.repositories.FillInTheBlanksExamQuestionRepository;
 
 
-
 import java.util.List;
 
 @RestController
@@ -20,11 +19,16 @@ public class FillInTheBlanksExamQuestionService {
 
     @Autowired
     public FillInTheBlanksExamQuestionService(FillInTheBlanksExamQuestionRepository fillInTheBlanksExamQuestionRepository,
-                                          ExamRepository examRepository) {
+                                              ExamRepository examRepository) {
         this.fillInTheBlanksExamQuestionRepository = fillInTheBlanksExamQuestionRepository;
         this.examRepository = examRepository;
     }
 
+    @GetMapping("/api/blanks/{eid}")
+    public FillInTheBlanksExamQuestion findFillInTheBlankQuestionById(@PathVariable("eid") int eid) {
+
+        return fillInTheBlanksExamQuestionRepository.findById(eid).orElse(null);
+    }
 
     @GetMapping("/api/exam/{eid}/blanks")
     public List<FillInTheBlanksExamQuestion> findBlanksForExam(@PathVariable("eid") int eid) {
@@ -32,7 +36,7 @@ public class FillInTheBlanksExamQuestionService {
         Exam exam = examRepository.findById(eid).orElse(null);
         if (exam != null) {
 
-            return fillInTheBlanksExamQuestionRepository.findBlanksForExam(exam,"FillInTheBlanks");
+            return fillInTheBlanksExamQuestionRepository.findBlanksForExam(exam, "FillInTheBlanks");
         }
 
         return null;
@@ -41,7 +45,7 @@ public class FillInTheBlanksExamQuestionService {
 
     @PostMapping("/api/exam/{eid}/blanks")
     public FillInTheBlanksExamQuestion createBlanksForExam(@RequestBody FillInTheBlanksExamQuestion newQuestion,
-                                                    @PathVariable("eid") int eid) {
+                                                           @PathVariable("eid") int eid) {
 
         Exam exam = examRepository.findById(eid).orElse(null);
 
@@ -50,6 +54,41 @@ public class FillInTheBlanksExamQuestionService {
             newQuestion.setExam(exam);
             newQuestion.setTypeOfQuestion("FillInTheBlanks");
             return fillInTheBlanksExamQuestionRepository.save(newQuestion);
+        }
+
+        return null;
+    }
+
+    @PutMapping("/api/blanks/{eid}")
+    public FillInTheBlanksExamQuestion updateBlankExamQuestion(@RequestBody FillInTheBlanksExamQuestion updatedQuestion, @PathVariable("eid") int eid) {
+
+        FillInTheBlanksExamQuestion existing = fillInTheBlanksExamQuestionRepository.findById(eid).orElse(null);
+
+        if (existing != null) {
+
+            int points = updatedQuestion.getPoints();
+            String description = updatedQuestion.getDescription();
+            String instructions = updatedQuestion.getInstructions();
+            String title = updatedQuestion.getTitle();
+            String variables = updatedQuestion.getVariables();
+
+            if (points > 0) {
+                existing.setPoints(points);
+            }
+            if (description != null) {
+                existing.setDescription(description);
+            }
+            if (instructions != null) {
+                existing.setInstructions(instructions);
+            }
+            if (title != null) {
+                existing.setTitle(title);
+            }
+            if (variables != null) {
+                existing.setVariables(variables);
+            }
+
+            return fillInTheBlanksExamQuestionRepository.save(existing);
         }
 
         return null;
