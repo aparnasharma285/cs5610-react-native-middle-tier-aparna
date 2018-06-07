@@ -91,7 +91,7 @@ public class MultipleChoiceExamQuestionService {
                 existing.setOptions(options);
             }
 
-            if (correctOption != 0) {
+            if (correctOption != existing.getCorrectOption()) {
                 existing.setCorrectOption(correctOption);
             }
 
