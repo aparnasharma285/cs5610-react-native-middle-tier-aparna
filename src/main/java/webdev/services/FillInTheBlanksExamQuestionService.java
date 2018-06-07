@@ -72,7 +72,7 @@ public class FillInTheBlanksExamQuestionService {
             String title = updatedQuestion.getTitle();
             String variables = updatedQuestion.getVariables();
 
-            if (points > 0) {
+            if (points >= 0) {
                 existing.setPoints(points);
             }
             if (description != null) {

@@ -84,7 +84,7 @@ public class AssignmentService {
             String name = updatedAssignment.getName();
             String title = updatedAssignment.getTitle();
 
-            if(points > 0){
+            if(points >= 0){
                 existing.setPoints(points);
             }
             if(description != null){

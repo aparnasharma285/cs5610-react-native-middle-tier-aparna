@@ -74,7 +74,7 @@ public class MultipleChoiceExamQuestionService {
             String options = updatedQuestion.getOptions();
             int correctOption = updatedQuestion.getCorrectOption();
 
-            if (points > 0) {
+            if (points >= 0) {
                 existing.setPoints(points);
             }
             if (description != null) {

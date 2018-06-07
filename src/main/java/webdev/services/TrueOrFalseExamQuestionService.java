@@ -74,7 +74,7 @@ public class TrueOrFalseExamQuestionService {
             String title = updatedQuestion.getTitle();
             Boolean isTrue = updatedQuestion.getIsTrue();
 
-            if (points > 0) {
+            if (points >= 0) {
                 existing.setPoints(points);
             }
             if (description != null) {

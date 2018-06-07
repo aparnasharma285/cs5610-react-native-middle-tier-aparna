@@ -74,7 +74,7 @@ public class EssayExamQuestionService {
             String instructions = updatedQuestion.getInstructions();
             String title = updatedQuestion.getTitle();
 
-            if (points > 0) {
+            if (points >= 0) {
                 existing.setPoints(points);
             }
             if (description != null) {
