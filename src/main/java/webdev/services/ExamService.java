@@ -93,17 +93,7 @@ public class ExamService {
             if( name!= null){
                 existing.setName(name);
             }
-
-            if(widgetType != null){
-                existing.setWidgetType(widgetType);
-            }
-
-            if (topic != null){
-                existing.setTopic(topic);
-            }
-
-            existing.setQuestions(questions);
-
+            
             return examRepository.save(existing);
         }
 
